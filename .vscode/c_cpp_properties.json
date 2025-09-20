@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "Mac",
+            "name": "Mac-Clang",
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/Hazel/src",
@@ -20,6 +20,59 @@
             "cppStandard": "c++17",
             "intelliSenseMode": "macos-clang-arm64",
             "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+        },
+        {
+            "name": "Windows-MSVC",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/Hazel/src",
+                "${workspaceFolder}/Hazel/vendor/spdlog/include"
+            ],
+            "defines": [
+                "HZ_PLATFORM_WINDOWS",
+                "HZ_BUILD_DLL",
+                "HZ_DEBUG"
+            ],
+            "compilerPath": "cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64"
+        },
+        {
+            "name": "Windows-GCC-Debug",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/Hazel/src",
+                "${workspaceFolder}/Hazel/vendor/spdlog/include"
+            ],
+            "defines": [
+                "HZ_PLATFORM_WINDOWS",
+                "HZ_BUILD_DLL",
+                "HZ_DEBUG"
+            ],
+            "compilerPath": "C:/SDK/mingw64/bin/g++.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64",
+            "compileCommands": "${workspaceFolder}/build/windows-gcc-debug/compile_commands.json"
+        },
+        {
+            "name": "Windows-GCC-Release",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/Hazel/src",
+                "${workspaceFolder}/Hazel/vendor/spdlog/include"
+            ],
+            "defines": [
+                "HZ_PLATFORM_WINDOWS",
+                "HZ_BUILD_DLL",
+                "NDEBUG"
+            ],
+            "compilerPath": "C:/SDK/mingw64/bin/g++.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64",
+            "compileCommands": "${workspaceFolder}/build/windows-gcc-release/compile_commands.json"
         }
     ],
     "version": 4

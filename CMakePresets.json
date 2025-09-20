@@ -2,9 +2,9 @@
     "version": 6,
     "configurePresets": [
         {
-            "name": "debug",
-            "displayName": "Debug Build",
-            "description": "Development build with debug information",
+            "name": "macos-clang-debug",
+            "displayName": "MacOS Debug",
+            "description": "Debug build on MacOS with Clang",
             "binaryDir": "${sourceDir}/build",
             "generator": "Ninja",
             "cacheVariables": {
@@ -15,9 +15,9 @@
             }
         },
         {
-            "name": "release",
-            "displayName": "Release Build",
-            "description": "Optimized production build",
+            "name": "macos-clang-release",
+            "displayName": "MacOS Release",
+            "description": "Release build on MacOS with Clang",
             "binaryDir": "${sourceDir}/build",
             "generator": "Ninja",
             "cacheVariables": {
@@ -26,18 +26,83 @@
                 "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             }
+        },
+        {
+            "name": "windows-msvc-debug",
+            "displayName": "Windows MSVC Debug",
+            "description": "Debug build on Windows with MSVC",
+            "binaryDir": "${sourceDir}/build/windows-msvc",
+            "generator": "Visual Studio 17 2022",
+            "architecture": { "value": "x64" }
+        },
+        {
+            "name": "windows-msvc-release",
+            "displayName": "Windows MSVC Release",
+            "description": "Release build on Windows with MSVC",
+            "generator": "Visual Studio 17 2022",
+            "binaryDir": "${sourceDir}/build/windows-msvc",
+            "architecture": { "value": "x64" }
+        },
+
+        {
+            "name": "windows-gcc-debug",
+            "displayName": "Windows MinGW GCC Debug",
+            "description": "Debug build on Windows with MinGW-w64 GCC",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/windows-gcc-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_C_COMPILER": "C:/SDK/mingw64/bin/gcc.exe",
+                "CMAKE_CXX_COMPILER": "C:/SDK/mingw64/bin/g++.exe",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON" }
+        },
+        {
+            "name": "windows-gcc-release",
+            "displayName": "Windows MinGW GCC Release",
+            "description": "Release build on Windows with MinGW-w64 GCC",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/windows-gcc-release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_C_COMPILER": "C:/SDK/mingw64/bin/gcc.exe",
+                "CMAKE_CXX_COMPILER": "C:/SDK/mingw64/bin/g++.exe",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON" }
         }
+
     ],
     "buildPresets": [
         {
-            "name": "debug",
-            "configurePreset": "debug",
-            "description": "Build Debug configuration"
+            "name": "macos-clang-debug",
+            "configurePreset": "macos-clang-debug",
+            "description": "Build Debug (Clang)"
         },
         {
-            "name": "release",
-            "configurePreset": "release",
-            "description": "Build Release configuration"
+            "name": "macos-clang-release",
+            "configurePreset": "macos-clang-release",
+            "description": "Build Release (Clang)"
+        },
+        {
+            "name": "windows-msvc-debug",
+            "configurePreset": "windows-msvc-debug",
+            "description": "Build Debug (MSVC)",
+            "configuration": "Debug"
+        },
+        {
+            "name": "windows-msvc-release",
+            "configurePreset": "windows-msvc-release",
+            "description": "Build Release (MSVC)",
+            "configuration": "Release"
+        },
+
+        {
+            "name": "windows-gcc-debug",
+            "configurePreset": "windows-gcc-debug",
+            "description": "Build Debug (MinGW GCC)"
+        },
+        {
+            "name": "windows-gcc-release",
+            "configurePreset": "windows-gcc-release",
+            "description": "Build Release (MinGW GCC)"
         }
     ]
 }
