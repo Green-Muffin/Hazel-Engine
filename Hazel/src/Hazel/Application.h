@@ -2,6 +2,7 @@
 #define APPLICATION_H
 
 #include "Core.h"
+#include "Events/Event.h"
 
 namespace Hazel {
 
@@ -11,10 +12,16 @@ namespace Hazel {
         virtual ~Application();
         
         void Run();
+
+    private:
+        std::unique_ptr<class Window> m_Window;
+
+        bool m_Running = true;
     };
 
     // To be defined in CLIENT
     Application* CreateApplication();  
+
 
 }
 

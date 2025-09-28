@@ -7,7 +7,7 @@
             "command": "cmake",
             "args": [
                 "--preset",
-                "debug"
+                "macos-clang-debug"
             ],
             "group": "build",
             "presentation": {
@@ -25,7 +25,7 @@
             "command": "cmake",
             "args": [
                 "--preset",
-                "release"
+                "macos-clang-release"
             ],
             "group": "build",
             "presentation": {
@@ -43,9 +43,8 @@
             "command": "cmake",
             "args": [
                 "--build",
-                "${workspaceFolder}/build",
-                "--config",
-                "Debug",
+                "--preset",
+                "macos-clang-debug",
                 "--parallel"
             ],
             "group": {
@@ -68,9 +67,8 @@
             "command": "cmake",
             "args": [
                 "--build",
-                "${workspaceFolder}/build",
-                "--config",
-                "Release",
+                "--preset",
+                "macos-clang-release",
                 "--parallel"
             ],
             "group": "build",

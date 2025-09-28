@@ -1,7 +1,13 @@
-# 引擎核心库
 project(Hazel)
 
-# 收集源文件
+option(HZ_ENABLE_PCH "Enable precompiled headers for Hazel" ON)
+
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
+add_subdirectory(vendor/GLFW)
+
 file(GLOB_RECURSE HAZEL_SOURCES 
     "src/*.cpp"
     "src/*.h"
@@ -11,6 +17,15 @@ file(GLOB_RECURSE HAZEL_SOURCES
 add_library(Hazel SHARED 
     ${HAZEL_SOURCES}
 )
+
+if (HZ_ENABLE_PCH)
+    if (CMAKE_VERSION VERSION_LESS 3.16)
+        message(WARNING "HZ_ENABLE_PCH=ON. CMake version is not recommand. The version is : ${CMAKE_VERSION}")
+    else()
+        target_precompile_headers(Hazel PRIVATE src/hzpch.h)
+        message(STATUS "Hazel: Precompiled headers enabled (hzpch.h)")
+    endif()
+endif()
 
 target_include_directories(Hazel 
     PUBLIC 
@@ -30,3 +45,5 @@ target_compile_definitions(Hazel
 set_target_properties(Hazel PROPERTIES
     OUTPUT_NAME "Hazel"
 )
+
+target_link_libraries(Hazel PRIVATE glfw)
